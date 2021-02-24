@@ -3,6 +3,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
 
 public class Main {
 	
@@ -19,6 +20,10 @@ public class Main {
 		bw.flush();
 		int cases = br.read();
 		
+		receiveCases();
+		caseArray= returnArrayDouble();	
+		bw.flush();
+		bw.write(organizeArray(caseArray));
 		/*
 		int counter=0;
 		while(counter<cases) {
@@ -29,14 +34,13 @@ public class Main {
 		}
 		*/
 				
-		bw.write("Bye :(");
 		br.close();
 		bw.close();
 	}
 	
 	
 	public static String [] receiveCases() throws IOException {
-		bw.write("Ingrese el caso de prueba, cada numero separado por espacios: ");
+		bw.write("Ingrese el caso de prueba, cada numero separado por espacios:");
 		String ageCase= br.readLine();
 		bw.flush();
 		String[] parts= ageCase.split(SPLIT);		
@@ -52,6 +56,35 @@ public class Main {
 			}
 		}
 		return ages;		
+	}
+	
+	public static String organizeArray(double[]array) {
+		int amountChanges=0;
+		int pasadas=0;
+		for (int i=1;i<array.length;i++) {
+			int changes=0;			
+			for (int j=0;j<array.length-i;j++) {
+				if (array[j]>array[j+1]) {
+					double temp = array[j]; 
+					array[j]=array[j+1];
+					array[j+1]=temp;
+					changes++;					
+				}
+				
+								
+				System.out.println("\n"+Arrays.toString(array));
+				System.out.println("changes: "+changes);
+				
+			}
+			amountChanges+=changes;
+			pasadas++;
+			System.out.println("amountChanges:"+amountChanges);
+			System.out.println("pasadas:"+pasadas);
+			
+		}
+		double average = (double) amountChanges/pasadas;	
+		
+		return average+"-"+Arrays.toString(array);	
 	}
 
 }
