@@ -57,7 +57,7 @@ public class Main {
 		}
 		return ages;		
 	}
-	
+
 	public static String organizeArray(double[]array) {
 		int amountChanges=0;
 		int pasadas=0;
@@ -69,8 +69,7 @@ public class Main {
 					array[j]=array[j+1];
 					array[j+1]=temp;
 					changes++;					
-				}
-				
+				}				
 								
 				System.out.println("\n"+Arrays.toString(array));
 				System.out.println("changes: "+changes);
