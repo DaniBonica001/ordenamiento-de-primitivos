@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 public class Main {
 	
 	public static ArrayList<String>ageNumbers;
@@ -16,7 +15,7 @@ public class Main {
 	public static void main(String[] args) throws IOException{		
 		ageNumbers = new ArrayList<String>();
 		
-		bw.write("Indique la cantidad de casos a ingresar: ");
+		//bw.write("Indique la cantidad de casos a ingresar: ");
 		bw.flush();
 		int cases = Integer.parseInt(br.readLine());
 			
@@ -80,9 +79,29 @@ public class Main {
 		}
 
 		double average =(double) amountChanges/pasadas;
-		double roundAverage = Math.round(average*100.0)/100.0;
-		String message= roundAverage+"-"+Arrays.toString(numbers);	
+		double roundAverage = average*100;
+		roundAverage = (int)roundAverage;
+		roundAverage=roundAverage/100;		
+		String message= roundAverage+"-"+doubleToString(numbers);		
 		ageNumbers.add(message);	
+	}
+	
+	public static String doubleToString(double[] numbers) {
+		String [] ageLine = new String [numbers.length];
+		for (int i=0;i<numbers.length;i++) {
+			ageLine[i]= String.valueOf(numbers[i]);
+		}
+		String infoLine="";
+		for (int j=0;j<ageLine.length;j++) {
+			if (j==0) {
+				infoLine= ageLine[0]+" ";
+			}else if (j!=ageLine.length-1){
+				infoLine+=ageLine[j]+" ";
+			}else if (j==ageLine.length-1) {
+				infoLine+=ageLine[j];
+			}
+		}
+		return infoLine;
 	}
 	
 
